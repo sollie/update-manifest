@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+export SSH_AUTH_SOCK=$INPUT_SSH_AUTH_SOCK
 mkdir -p /home/runner/.ssh
 ssh-keyscan $INPUT_GHES_HOST >> /home/runner/.ssh/known_hosts
 echo "$INPUT_SSH_PRIVATE_KEY" > /home/runner/.ssh/github_actions
