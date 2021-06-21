@@ -1,11 +1,9 @@
 #!/bin/bash
 set -e
 
-export SSH_AUTH_SOCK=$INPUT_SSH_AUTH_SOCK
 mkdir -p /home/runner/.ssh
 ssh-keyscan $INPUT_GHES_HOST >> /home/runner/.ssh/known_hosts
 echo "$INPUT_SSH_PRIVATE_KEY" > /home/runner/.ssh/github_actions
 chmod 600 /home/runner/.ssh/github_actions
 ssh-agent -a $INPUT_SSH_AUTH_SOCK > /dev/null
 ssh-add /home/runner/.ssh/github_actions
-echo "SSH_AUTH_SOCK=$INPUT_SSH_AUTH_SOCK" >> $GITUB_ENV
