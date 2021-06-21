@@ -15,3 +15,7 @@ runs:
   steps:
     - run: ${{ github.action_path}}/ssh-agent.sh
       shell: bash
+      env:
+        INPUT_GHES_HOST: ${{ inputs.ghes_host }}
+        INPUT_SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
+        INPUT_SSH_AUTH_SOCK: ${{ inputs.ssh_auth_sock }}
