@@ -2,7 +2,7 @@
 set -e
 
 mkdir -p /home/runner/.ssh
-ssh-keyscan $INPUT_ghes_host >> /home/runner/.ssh/known_hosts
+echo ssh-keyscan $INPUT_ghes_host >> /home/runner/.ssh/known_hosts
 echo "$INPUT_ssh_private_key" > /home/runner/.ssh/github_actions
 chmod 600 /home/runner/.ssh/github_actions
 ssh-agent -a $INPUT_ssh_auth_sock > /dev/null
