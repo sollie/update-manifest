@@ -13,11 +13,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: |
-      echo "SSH_AUTH_SOCK=${{ inputs.ssh_auth_sock }}" >> $GITHUB_ENV
+    - run: echo "SSH_AUTH_SOCK=${{ inputs.ssh_auth_sock }}" >> $GITHUB_ENV
       shell: bash
-    - run: |
-      echo "GOPRIVATE=${{ inputs.ghes_host }}" >> $GITHUB_ENV
+    - run: echo "GOPRIVATE=${{ inputs.ghes_host }}" >> $GITHUB_ENV
       shell: bash
     - run: ${{ github.action_path}}/action.sh
       shell: bash
