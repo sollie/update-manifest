@@ -1,0 +1,17 @@
+name: 'ssh-agent-action'
+description: 'Load ssh-key and start ssh-agent'
+inputs:
+  ssh_private_key:
+    description: 'Private key'
+    required: true
+  ssh_auth_sock:
+    description: 'Where to place SSH Agent socket'
+    required: true
+  ghes_host:
+    description: "GHES server address"
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run ${{ github_action_path/ssh-agent.sh }}
+      shell: bash
