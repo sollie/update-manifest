@@ -5,7 +5,7 @@ inputs:
     description: 'Private key'
     required: true
   ssh_auth_sock:
-    description: 'Where to place SSH Agent socket'
+    description: 'Location of SSH Agent socket'
     required: false
     default: "/tmp/ssh_agent.sock"
   ghes_host:
