@@ -20,4 +20,4 @@ OLD_IMAGE=$(cat ${INPUT_MANIFEST_NAME}-values.yaml | grep image | grep ${INPUT_M
 NEW_IMAGE=${INPUT_REGISTRY_HOST}/${INPUT_MANIFEST_NAME}:${INPUT_IMAGE_TAG}
 sed -i "s|${OLD_IMAGE}|${NEW_IMAGE}|g" ${INPUT_MANIFEST_NAME}-values.yaml
 git commit -m "Bump image - ${INPUT_MANIFEST_NAME}:${INPUT_IMAGE_TAG}" ${INPUT_MANIFEST_NAME}-values.yaml
-git push
+git push --force
