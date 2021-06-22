@@ -1,5 +1,5 @@
-name: 'ssh-agent-action'
-description: 'Load ssh-key and start ssh-agent'
+name: 'update-manifests'
+description: 'Update manifests in remote repo'
 inputs:
   ssh_private_key:
     description: 'Private key'
@@ -10,6 +10,24 @@ inputs:
   ghes_host:
     description: "GHES server address"
     required: true
+  registry_host:
+    description: "Hostname of container registry"
+    required: true
+  manifest_org:
+    description: "Org or username owning manifest repo"
+    required: true
+  manifest_repo:
+    description: "Name of repo containing manifests"
+    required: true
+  manifest_name:
+    description: "Name of manifest"
+    required: true
+  manifest_path:
+    description: "Path of manifests inside repo"
+  image_tag:
+    description: "Image tag"
+    required: true
+
 runs:
   using: 'composite'
   steps:
@@ -19,3 +37,9 @@ runs:
         INPUT_GHES_HOST: ${{ inputs.ghes_host }}
         INPUT_SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
         INPUT_SSH_AUTH_SOCK: ${{ inputs.ssh_auth_sock }}
+        INPUT_MANIFEST_ORG: ${{ inputs.manifest_org }}
+        INPUT_MANIFEST_REPO: ${{ inputs.manifest_repo }}
+        INPUT_MANIFEST_NAME: ${{ inputs.manifest_name }}
+        INPUT_MANIFEST_PATH: ${{ inputs.manifest_path }}
+        INPUT_REGISTRY_HOST: ${{ inputs.registry_host }}
+        INPUT_IMAGE_TAG: ${{ inputs.image_tag }}

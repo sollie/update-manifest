@@ -8,4 +8,14 @@ chmod 600 /home/runner/.ssh/github_actions
 ssh-agent -a $INPUT_SSH_AUTH_SOCK > /dev/null
 ssh-add /home/runner/.ssh/github_actions
 
-git config --global --add url."git@$INPUT_GHES_HOST:".insteadOf "https://$INPUT_GHES_HOST/"
+git config --global --add url."git@${INPUT_GHES_HOST}:".insteadOf "https://${INPUT_GHES_HOST}/"
+git config --global user.name ${INPUT_MANIFEST_NAME}
+git config --global user.email ${INPUT_MANIFEST_NAME}@${INPUT_GHES_HOST}
+git clone git@${INPUT_GHES_HOST}:${INPUT_MANIFEST_ORG}/${INPUT_MANIFEST_REPO}.git ${INPUT_MANIFEST_REPO}
+
+cd ${INPUT_MANIFEST_REPO}/${INPUT_MANIFEST_PATH}/${INPUT_MANIFEST_NAME}
+OLD_IMAGE=$(cat ${INPUT_MANINFEST_NAME}-values.yaml | grep image | grep ${INPUT_MANIFEST_NAME} | awk '{print $2}')
+NEW_IMAGE=${INPUT_REGISTRY_HOST}/${INPUT_MANIFEST_NAME}:${INPUT_IMAGE_TAG}
+sed -i "s|${OLD_IMAGE}|${NEW_IMAGE}|g" ${INPUT_MANIFEST_NAME}-values.yaml
+git commit -m "Bump image - ${NEW_IMAGE}" ${INPUT_MANIFEST_NAME}-values.yaml
+git push
