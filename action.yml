@@ -6,7 +6,8 @@ inputs:
     required: true
   ssh_auth_sock:
     description: 'Where to place SSH Agent socket'
-    required: true
+    required: false
+    default: "/tmp/ssh_agent.sock"
   ghes_host:
     description: "GHES server address"
     required: true
