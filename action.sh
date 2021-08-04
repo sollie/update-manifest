@@ -16,7 +16,7 @@ git config --global user.email ${INPUT_MANIFEST_NAME}@${INPUT_GHES_HOST}
 git clone git@${INPUT_GHES_HOST}:${INPUT_MANIFEST_ORG}/${INPUT_MANIFEST_REPO}.git ${INPUT_MANIFEST_REPO}
 
 cd ${INPUT_MANIFEST_REPO}/${INPUT_MANIFEST_PATH}/${INPUT_MANIFEST_NAME}
-OLD_IMAGE=$(cat kustomization.yaml | grep newTag | awk '{print $2}')
+OLD_IMAGE=$(cat kustomization.yaml | grep -A3 ${INPUT_MANIFEST_NAME} | grep newTag | awk '{print $2}')
 NEW_IMAGE=${INPUT_IMAGE_TAG}
 sed -i "s|${OLD_IMAGE}|${NEW_IMAGE}|g" kustomization.yaml
 git commit -m "Bump image - ${INPUT_MANIFEST_NAME}:${INPUT_IMAGE_TAG}" kustomization.yaml
