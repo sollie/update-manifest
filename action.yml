@@ -23,6 +23,9 @@ inputs:
   manifest_name:
     description: "Name of manifest"
     required: true
+  image_name:
+    description: "Name of the docker image, defaults to manifest name"
+    required: false
   manifest_path:
     description: "Path of manifests inside repo"
   image_tag:
@@ -42,5 +45,6 @@ runs:
         INPUT_MANIFEST_REPO: ${{ inputs.manifest_repo }}
         INPUT_MANIFEST_NAME: ${{ inputs.manifest_name }}
         INPUT_MANIFEST_PATH: ${{ inputs.manifest_path }}
+        INPUT_IMAGE_NAME: ${{ inputs.image_name }}
         INPUT_REGISTRY_HOST: ${{ inputs.registry_host }}
         INPUT_IMAGE_TAG: ${{ inputs.image_tag }}
