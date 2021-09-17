@@ -24,6 +24,9 @@
   * manifest_name:
     * description: "Name of manifest"
     * required: true
+  * image_name:
+    * description: "Name of the docker image, defaults to manifest name"
+    * required: false
   * manifest_path:
     * description: "Path of manifests inside repo"
   * image_tag:
