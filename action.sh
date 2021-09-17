@@ -15,7 +15,7 @@ git config --global user.name ${INPUT_MANIFEST_NAME}
 git config --global user.email ${INPUT_MANIFEST_NAME}@${INPUT_GHES_HOST}
 git clone git@${INPUT_GHES_HOST}:${INPUT_MANIFEST_ORG}/${INPUT_MANIFEST_REPO}.git ${INPUT_MANIFEST_REPO}
 
-if [ [ "${INPUT_IMAGE_NAME}" == "" ] ]; then
+if [ "${INPUT_IMAGE_NAME}" == "" ]; then
     INPUT_IMAGE_NAME = INPUT_MANIFEST_NAME
 fi
 
